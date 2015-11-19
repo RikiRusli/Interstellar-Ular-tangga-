@@ -147,36 +147,22 @@ public class InterstellarHumanVsHuman {
      * print board buat text mode console
      */
     public void print() {
-       for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 //player diwakilkan dengan X dan Y
                 //kotak kosong dengan Φ
                 //black hole dengan β
                 //warp dengan ω
                 if (board.getPlanet(i, j).getWarpPl() != null) {
-                    System.out.print("[ ω ]");
+                    System.out.print("ω ");
                 } else if (board.getPlanet(i, j).getHolePl() != null) {
-                    System.out.print("[ β ]");
+                    System.out.print("β ");
                 } else if (board.getAsAt(0).getLocateAs() == board.getPlanet(i, j).getLocatePl()) {
-                    System.out.print("[ X ]");
+                    System.out.print("X ");
                 } else if (board.getPlanet(i, j).getLocatePl() == board.getAsAt(1).getLocateAs()) {
-                    System.out.print("[ Y ]");
+                    System.out.print("Y ");
                 } else {
-                    System.out.print("[ Φ ]");
-                }
-            }
-            System.out.println("");
-            for (int k = 0; k < 10; k++) {
-                if (i % 2 == 0) {
-                    int idxGenap = ((9 - i) * 10) + ((9 - k) + 1);
-                    System.out.print("[" + idxGenap + " ]");
-                } else {
-                    int idxGanjil = ((9 - i) * 10) + (k + 1);
-                    if (idxGanjil < 10) {
-                        System.out.print("[0" + idxGanjil + " ]");
-                    } else {
-                        System.out.print("[" + idxGanjil + " ]");
-                    }
+                    System.out.print("Φ ");
                 }
             }
             System.out.println("");
@@ -206,27 +192,11 @@ public class InterstellarHumanVsHuman {
             }
             else if(code.equals("roll")){
                 dadu = board.dice.roll();
-                System.out.println(board.getAsAt(giliran).getName() + " mendapat dadu:" + dadu);
             }
             //int dadu = board.dice.roll();
             
-            
-            //kalo gerak out of bounds / melebihi 100
-            if (board.getAsAt(giliran).getLocateAs() + dadu > 100) {
-                //System.out.println("JLEGUR ANJING");
-                board.getAsAt(giliran).moveBackward(dadu);
-                board.getAsAt(giliran).setLocateAs();
-            } else {
-                for (int i = 0; i < dadu; i++) {
-                    board.getAsAt(giliran).move();
-                    board.getAsAt(giliran).setLocateAs();
-                }
-            }
-            if (dadu == 6) {
-                System.out.println("Lucky 6!!!");
-                //kocok lagi
-                dadu = board.dice.roll();
-                System.out.println(board.getAsAt(giliran).getName() + " mendapat dadu:" + dadu);
+            do {
+                //kalo gerak out of bounds / melebihi 100
                 if (board.getAsAt(giliran).getLocateAs() + dadu > 100) {
                     //System.out.println("JLEGUR ANJING");
                     board.getAsAt(giliran).moveBackward(dadu);
@@ -234,14 +204,17 @@ public class InterstellarHumanVsHuman {
                 } else {
                     for (int i = 0; i < dadu; i++) {
                         board.getAsAt(giliran).move();
-                        System.out.println(board.getAsAt(giliran).getName() + " mendapat dadu:" + dadu);
                         board.getAsAt(giliran).setLocateAs();
                     }
                 }
+                if(dadu==6){
+                    System.out.println("Lucky 6!!!");
+                }
+                //kocok lagi
+                dadu = board.dice.roll();
+                
                 //kalo dapet dadu 6 jalan lagi
-            }
-            
-            
+            } while (dadu == 6);
             
             //System.out.println("x:"+board.getAsAt(giliran).getXAs()+" y:"+board.getAsAt(giliran).getYAs());
             
