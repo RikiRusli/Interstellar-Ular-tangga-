@@ -7,16 +7,15 @@ import java.util.Scanner;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Riki
  */
 public class InterstellarHumanVsComp {
-    
+
     private Random rd = new Random();
-    private int numBH = rd.nextInt(3)+1;
-    private int numWG = rd.nextInt(3)+1;
+    private int numBH = rd.nextInt(3) + 1;
+    private int numWG = rd.nextInt(3) + 1;
     private Board board = new Board(6, 5, 5, 2);
 
     private int xin = 0;
@@ -29,8 +28,8 @@ public class InterstellarHumanVsComp {
      * @param isGanjil kalo masukin 0 buat bikin angka ganjil
      */
     private void setXIn(int isGanjil) {
-        int x = rd.nextInt(2)+1;
-        x+= isGanjil;
+        int x = rd.nextInt(2) + 1;
+        x += isGanjil;
         if (x % 2 == 0) {
             x++;
         }
@@ -42,8 +41,8 @@ public class InterstellarHumanVsComp {
      * @param isGanjil kalo masukin 0 buat bikin angka ganjil
      */
     private void setXOut(int isGanjil) {
-        int x = rd.nextInt(2)+1;
-        x+=isGanjil;
+        int x = rd.nextInt(2) + 1;
+        x += isGanjil;
         if (x % 2 == 0) {
             x++;
         }
@@ -56,8 +55,8 @@ public class InterstellarHumanVsComp {
      * @param isGanjil kalo masukin 0 buat bikin angka ganjil
      */
     private void setYIn(int isGanjil) {
-        int x = rd.nextInt(3) +1;
-        x+=isGanjil;
+        int x = rd.nextInt(3) + 1;
+        x += isGanjil;
         if (x % 2 == 0) {
             x++;
         }
@@ -70,8 +69,8 @@ public class InterstellarHumanVsComp {
      * @param isGanjil kalo masukin 0 buat bikin angka ganjil
      */
     private void setYOut(int isGanjil) {
-        int x = rd.nextInt(3)+1;
-        x+=isGanjil;
+        int x = rd.nextInt(3) + 1;
+        x += isGanjil;
         if (x % 2 == 0) {
             x++;
         }
@@ -83,7 +82,7 @@ public class InterstellarHumanVsComp {
      */
     public void makeAllBH() {
         //blackhole di ganjil
-        if(numBH%2==1){
+        if (numBH % 2 == 1) {
             numBH++;
         }
         for (int i = 0; i < numBH; i++) {
@@ -104,7 +103,7 @@ public class InterstellarHumanVsComp {
      * buat objek warp sesuai jumlah warp
      */
     public void makeAllWG() {
-        if(numWG%2==1){
+        if (numWG % 2 == 1) {
             numWG++;
         }
         for (int i = 0; i < numWG; i++) {
@@ -154,15 +153,29 @@ public class InterstellarHumanVsComp {
                 //black hole dengan β
                 //warp dengan ω
                 if (board.getPlanet(i, j).getWarpPl() != null) {
-                    System.out.print("ω ");
+                    System.out.print("[ ω ]");
                 } else if (board.getPlanet(i, j).getHolePl() != null) {
-                    System.out.print("β ");
+                    System.out.print("[ β ]");
                 } else if (board.getAsAt(0).getLocateAs() == board.getPlanet(i, j).getLocatePl()) {
-                    System.out.print("X ");
+                    System.out.print("[ X ]");
                 } else if (board.getPlanet(i, j).getLocatePl() == board.getAsAt(1).getLocateAs()) {
-                    System.out.print("Y ");
+                    System.out.print("[ Y ]");
                 } else {
-                    System.out.print("Φ ");
+                    System.out.print("[ Φ ]");
+                }
+            }
+            System.out.println("");
+            for (int k = 0; k < 10; k++) {
+                if (i % 2 == 0) {
+                    int idxGenap = ((9 - i) * 10) + ((9 - k) + 1);
+                    System.out.print("[" + idxGenap + " ]");
+                } else {
+                    int idxGanjil = ((9 - i) * 10) + (k + 1);
+                    if (idxGanjil < 10) {
+                        System.out.print("[0" + idxGanjil + " ]");
+                    } else {
+                        System.out.print("[" + idxGanjil + " ]");
+                    }
                 }
             }
             System.out.println("");
@@ -173,7 +186,7 @@ public class InterstellarHumanVsComp {
      * method play 2 player human
      */
     public void play() {
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         //inisiasi semua objek dulu
         this.makeAllAs();
         this.makeAllBH();
@@ -184,28 +197,41 @@ public class InterstellarHumanVsComp {
         //penentuan siapa player 1 sebelum permainan di mulai utk di bagian visualisasi
         int giliran = 0;
         while (lanjut) {
-            int dadu=0;
-            if(giliran==0){
+            int dadu = 0;
+            if (giliran == 0) {
                 System.out.println("roll or exit?");
-                String code=sc.next();
-               
-                if(code.equals("exit")){
+                String code = sc.next();
+
+                if (code.equals("exit")) {
                     break;
-                }
-                else if(code.equals("roll")){
+                } else if (code.equals("roll")) {
                     dadu = board.dice.roll();
+                    System.out.println(board.getAsAt(giliran).getName() + " mendapat dadu:" + dadu);
                 }
-            }
-            else{
-                
+            } else {
+
                 dadu = board.dice.roll();
+                System.out.println(board.getAsAt(giliran).getName() + " mendapat dadu:" + dadu);
                 System.out.println("Comp turn");
             }
-            
+
             //int dadu = board.dice.roll();
-            
-            do {
-                //kalo gerak out of bounds / melebihi 100
+            //kalo gerak out of bounds / melebihi 100
+            if (board.getAsAt(giliran).getLocateAs() + dadu > 100) {
+                //System.out.println("JLEGUR ANJING");
+                board.getAsAt(giliran).moveBackward(dadu);
+                board.getAsAt(giliran).setLocateAs();
+            } else {
+                for (int i = 0; i < dadu; i++) {
+                    board.getAsAt(giliran).move();
+                    board.getAsAt(giliran).setLocateAs();
+                }
+            }
+            if (dadu == 6) {
+                System.out.println("Lucky 6!!!");
+                //kocok lagi
+                dadu = board.dice.roll();
+                System.out.println(board.getAsAt(giliran).getName() + " mendapat dadu:" + dadu);
                 if (board.getAsAt(giliran).getLocateAs() + dadu > 100) {
                     //System.out.println("JLEGUR ANJING");
                     board.getAsAt(giliran).moveBackward(dadu);
@@ -213,23 +239,17 @@ public class InterstellarHumanVsComp {
                 } else {
                     for (int i = 0; i < dadu; i++) {
                         board.getAsAt(giliran).move();
+                        System.out.println(board.getAsAt(giliran).getName() + " mendapat dadu:" + dadu);
                         board.getAsAt(giliran).setLocateAs();
                     }
                 }
-                if(dadu==6){
-                    System.out.println("Lucky 6!!!");
-                }
-                //kocok lagi
-                dadu = board.dice.roll();
-                
                 //kalo dapet dadu 6 jalan lagi
-            } while (dadu == 6);
-            
+            }
+
             //System.out.println("x:"+board.getAsAt(giliran).getXAs()+" y:"+board.getAsAt(giliran).getYAs());
-            
-            if (board.getPlanet(board.getAsAt(giliran).getYAs(), board.getAsAt(giliran).getXAs()).getHolePl()!=null) {
+            if (board.getPlanet(board.getAsAt(giliran).getYAs(), board.getAsAt(giliran).getXAs()).getHolePl() != null) {
                 //kalo nginjek blackhole ubah posisi player ke xout yout
-                
+
                 int xawal = board.getAsAt(giliran).getXAs();
                 int yawal = board.getAsAt(giliran).getYAs();
                 //simpen dulu posisi nya di variabel agar tidak terlalu rujid
@@ -241,9 +261,9 @@ public class InterstellarHumanVsComp {
                 //update locate player
                 //board.getPlanet(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs()).setLocatePl(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs());
                 board.getAsAt(giliran).setLocateAs();
-                System.out.println(board.getAsAt(giliran).getName()+"kena blackhole ke posisi:"+board.getAsAt(giliran).getLocateAs());
+                System.out.println(board.getAsAt(giliran).getName() + "kena blackhole ke posisi:" + board.getAsAt(giliran).getLocateAs());
             }
-            
+
             if (board.getPlanet(board.getAsAt(giliran).getYAs(), board.getAsAt(giliran).getXAs()).getWarpPl() != null) {
                 //kalo nginjek warp ubah posisi player ke xout yout
                 //System.out.println(board.getAsAt(giliran).getName()+"kena warp");
@@ -258,9 +278,9 @@ public class InterstellarHumanVsComp {
                 //update locate player
                 //board.getPlanet(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs()).setLocatePl(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs());
                 board.getAsAt(giliran).setLocateAs();
-                System.out.println(board.getAsAt(giliran).getName()+"kena warp ke posisi:"+board.getAsAt(giliran).getLocateAs());
+                System.out.println(board.getAsAt(giliran).getName() + "kena warp ke posisi:" + board.getAsAt(giliran).getLocateAs());
             }
-            
+
             //kalo nginjek lawan
             if (giliran == 0) {
                 if (board.getAsAt(giliran).getLocateAs() == board.getAsAt(giliran + 1).getLocateAs()) {
@@ -279,8 +299,19 @@ public class InterstellarHumanVsComp {
                 }
             }
             //System.out.println(board.getAsAt(giliran).getName() + " pada posisi:" + board.getAsAt(giliran).getLocateAs());
-            System.out.println(board.getAsAt(0).getName()+" pada posisi:"+board.getAsAt(0).getLocateAs());
-            System.out.println(board.getAsAt(1).getName()+" pada posisi:"+board.getAsAt(1).getLocateAs());
+            if (board.getAsAt(0).getLocateAs() + 1 == 101) {
+                System.out.println(board.getAsAt(0).getName() + " pada posisi:" + (board.getAsAt(0).getLocateAs()));
+                System.out.println(board.getAsAt(1).getName() + " pada posisi:" + (board.getAsAt(1).getLocateAs()));
+            }
+            if (board.getAsAt(1).getLocateAs() + 1 == 101) {
+                System.out.println(board.getAsAt(0).getName() + " pada posisi:" + (board.getAsAt(0).getLocateAs()));
+                System.out.println(board.getAsAt(1).getName() + " pada posisi:" + (board.getAsAt(1).getLocateAs()));
+            }
+
+            if (board.getAsAt(0).getLocateAs() + 1 != 101 && board.getAsAt(1).getLocateAs() + 1 != 101) {
+                System.out.println(board.getAsAt(0).getName() + " pada posisi:" + (board.getAsAt(0).getLocateAs()));
+                System.out.println(board.getAsAt(1).getName() + " pada posisi:" + (board.getAsAt(1).getLocateAs()));
+            }
             this.print();
 
             //end game
@@ -293,13 +324,11 @@ public class InterstellarHumanVsComp {
                 }
             } else {
                 giliran++;
-                if (giliran ==2) {
+                if (giliran == 2) {
                     giliran = 0;
                 }
             }
-
-        //tampilkan siapa yg menang
+            //tampilkan siapa yg menang
         }
-
     }
 }
