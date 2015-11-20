@@ -5,14 +5,19 @@
 	# @author Ivan TW - 2014730026 || Riki Rusli (Ketua) - 2014730032 || Daniel Ferdinan - 2014730038
 	# Kelas Tester yang menjalankan semua kelas menjadi permainan Interstellar
 	
+	# memulai session
 	session_start();
 	
+	# Copy-Paste kelas Astronot.php
 	require "Astronot.php";
 	
+	# Copy-Paste kelas Locator.php
 	require "Locator.php";
 	
+	# Copy-Paste kelas BlackHole.php
 	require "BlackHole.php";
 	
+	# Copy-Paste kelas SpaceWarpGate.php
 	require "SpaceWarpGate.php";
 	
 	require "Planet.php";
