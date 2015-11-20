@@ -53,6 +53,9 @@
 			$this->xin=$x;
 		}
 		
+		# Setter posisi X kartesian awal (untuk menentukan posisi keluar blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_X_Out($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
@@ -62,6 +65,9 @@
 			$this->xout=$x;
 		}
 		
+		# Setter posisi Y kartesian awal (untuk menentukan posisi masuk blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_Y_In($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
@@ -70,6 +76,10 @@
 			}
 			$this->yout=$x;
 		}
+		
+		# Setter posisi Y kartesian awal (untuk menentukan posisi keluar blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_Y_Out($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
@@ -79,6 +89,7 @@
 			$this->yout=$x;
 		}
 		
+		# Method untuk men-generate blackhole pada board permainan Interstellar
 		public function make_All_BH(){
 			for($i=0;$i<$this->numBH;$i++){
 				$this->set_X_In(1);
