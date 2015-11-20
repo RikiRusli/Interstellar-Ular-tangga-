@@ -144,6 +144,7 @@
 			}
 		}
 		
+		# Method untuk men-generate board permainan Interstellar yang akan ditampilkan ke konsol
 		public function print_Board(){
 			for($i=0;$i<10;$i++){
 				for($j=0;$j<10;$j++){
@@ -162,7 +163,6 @@
 					else{
 						echo "[ Φ ] ";
 					}
-					
 				}
 				echo "<br>";
 					for ($k = 0; $k < 10; $k++) {
@@ -181,146 +181,15 @@
 				echo "<br>";
 			}
 		}
-		
-		public function komputer_Gerak(){
-			$dadu_Main=$this->board->roll_The_Dice();
-				
-				echo $this->board->get_As_At($this->pemain)->get_Name()." mendapat dadu:".$dadu_Main;
-				echo " ";
-				if($this->board->get_As_At($this->giliran)->get_Locate_As()+$dadu_Main>100){
-					$this->board->get_As_At($this->giliran)->move_Backward($dadu_Main);
-					$this->board->get_As_At($this->giliran)->set_Locate_As();
-				}
-				else{
-					for($i=0;$i<$dadu_Main;$i++){
-						$this->board->get_As_At($this->giliran)->move();
-						$this->board->get_As_At($this->giliran)->set_Locate_As();
-					}
-				}
-				
-				if($dadu_Main==6){
-					echo "Lucky 6!!"."<br>";
-					$dadu_Main=$this->board->roll_The_Dice();
-					echo $this->board->get_As_At($this->giliran)->get_Name()." mendapat dadu:".$dadu_Main;
-					if($this->board->get_As_At($this->giliran)->get_Locate_As()+$dadu_Main>100){
-						$this->board->get_As_At($this->giliran)->move_Backward($dadu_Main);
-						$this->board->get_As_At($this->giliran)->set_Locate_As();
-					}
-					else{
-						for($i=0;$i<$dadu_Main;$i++){
-							$this->board->get_As_At($this->giliran)->move();
-							$this->board->get_As_At($this->giliran)->set_Locate_As();
-						}
-					}
-				}
-				
-				if ($this->board->get_Planet($this->board->get_As_At($this->giliran)->get_Y_As(), $this->board->get_As_At($this->giliran)->get_X_As())->get_Hole_Pl()!=null) {
-					//kalo nginjek blackhole ubah posisi player ke xout yout
-					echo $this->board->get_As_At($this->giliran)->get_Name()."kena blackhole"."<br>";
-					$xawal = $this->board->get_As_At($this->giliran)->get_X_As();
-					$yawal = $this->board->get_As_At($this->giliran)->get_Y_As();
-					//simpen dulu posisi nya di variabel agar tidak terlalu rujid
-					$xout = $this->board->get_Planet($yawal, $xawal)->get_Hole_Pl()->get_x_Out_Lc();
-					$yout = $this->board->get_Planet($yawal, $xawal)->get_Hole_Pl()->get_y_Out_Lc();
-					//ubah posisi player
-					$this->board->get_As_At($this->giliran)->set_X_As($xout);
-					$this->board->get_As_At($this->giliran)->set_Y_As($yout);
-					//update locate player
-					//board.getPlanet(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs()).setLocatePl(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs());
-					$this->board->get_As_At($this->giliran)->set_Locate_As();
-				}
-				
-				if ($this->board->get_Planet($this->board->get_As_At($this->giliran)->get_Y_As(), $this->board->get_As_At($this->giliran)->get_X_As())->get_Warp_Pl()!=null) {
-					//kalo nginjek warp ubah posisi player ke xout yout
-					echo $this->board->get_As_At($this->giliran)->get_Name()."kena warp"."<br>";
-					$xawal = $this->board->get_As_At($this->giliran)->get_X_As();
-					$yawal = $this->board->get_As_At($this->giliran)->get_Y_As();
-					//simpen dulu posisi nya di variabel agar tidak terlalu rujid
-					$xout = $this->board->get_Planet($yawal, $xawal)->get_Warp_Pl()->get_x_Out_Lc();
-					$yout = $this->board->get_Planet($yawal, $xawal)->get_Warp_Pl()->get_y_Out_Lc();
-					//ubah posisi player
-					$this->board->get_As_At($this->giliran)->set_X_As($xout);
-					$this->board->get_As_At($this->giliran)->set_Y_As($yout);
-					//update locate player
-					//board.getPlanet(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs()).setLocatePl(board.getAsAt(0).getYAs(), board.getAsAt(0).getXAs());
-					$this->board->get_As_At($this->giliran)->set_Locate_As();
-				}
-				
-				//kalo nginjek lawan
-				if ($this->giliran == 0) {
-					if ($this->board->get_As_At($this->giliran)->get_Locate_As() == $this->board->get_As_At($this->giliran + 1)->get_Locate_As()) {
-						$this->board->get_As_At(1)->set_X_As(0);
-						$this->board->get_As_At(1)->set_Y_As(9);
-						$this->board->get_As_At(1)->set_Locate_As();
-						echo "<br>";
-						echo $this->board->get_As_At(1)->get_Name()." mampus keinjek!!!"."<br>";
-					}
-				}
-				if ($this->giliran == 1) {
-					if ($this->board->get_As_At($this->giliran)->get_Locate_As() == $this->board->get_As_At(0)->get_Locate_As())  {
-						$this->board->get_As_At(0)->set_X_As(0);
-						$this->board->get_As_At(0)->set_Y_As(9);
-						$this->board->get_As_At(0)->set_Locate_As();
-						echo "<br>";
-						echo $this->board->get_As_At(0)->get_Name()."mampus keinjek!!!"."<br>";
-					}
-				}
-				
-				if($this->board->get_As_At(0)->get_Locate_As()+1==101){
-					
-					echo "<br>";
-					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As());
-					echo " ___ ";
-					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As()+1);
-					echo "<br>";
-				}
-				else if($this->board->get_As_At(1)->get_Locate_As()+1==101){
-					echo "<br>";
-					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As()+1);
-					echo " ___ ";
-					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As());
-					echo "<br>";
-				}
-				else{
-					echo "<br>";
-					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As()+1);
-					echo " ___ ";
-					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As()+1);
-					echo "<br>";
-				}
-				$this->print_Board();
-				echo "<br>";
-				
-				if ($this->end_Game($this->board->get_As_At($this->giliran), 100)) {
-					$lanjut = false;
-					if ($this->giliran == 0) {
-						echo "Player 1 win";
-						echo "<br>";
-					} else {
-						echo "Player 2 win";
-						echo "<br>";
-					}
-				} else {
-					$this->giliran++;
-					if ($this->giliran ==2) {
-						$this->giliran = 0;
-					}
-				}
-				
-			}
-			
-		
-	
-		
+
+		# Method untuk menjalankan permainan Manusia melawan Manusia.
 		public function play(){		
-			
 			$dadu_Main=0;
 			
 			echo "roll or exit? exit pls close the browser tab"."<br>";
 			//insert something here!!!!!
 			if(isset($_GET['input'])){
 				$code=$_GET['input'];
-				
 				$code = true;
 				if($code==false){
 					break;
@@ -328,7 +197,6 @@
 				else{
 					$dadu_Main=$this->board->roll_The_Dice();
 					echo $this->board->get_As_At($this->giliran)->get_Name()." mendapat dadu:".$dadu_Main."<br>";
-					
 				}	
 				
 				if($this->board->get_As_At($this->giliran)->get_Locate_As()+$dadu_Main>100){
@@ -409,7 +277,6 @@
 				}
 				
 				if($this->board->get_As_At(0)->get_Locate_As()+1==101){
-					
 					echo "<br>";
 					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As());
 					echo " ___ ";
