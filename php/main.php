@@ -20,23 +20,29 @@
 	# Copy-Paste kelas SpaceWarpGate.php
 	require "SpaceWarpGate.php";
 	
+	# Copy-Paste kelas Planet.php
 	require "Planet.php";
 	
+	# Copy-Paste kelas Dadu.php
 	require "Dadu.php";
 	
+	# Copy-Paste kelas Board.php
 	require "Board.php";
 	
+	# Copy-Paste kelas InterstellarCompVsComp.php
 	require "InterStellarCompVsComp.php";
 	
+	# Copy-Paste kelas InterstellarHumanVsComp.php
 	require "InterstellarHumanVsComp.php";
 	
+	# Copy-Paste kelas InterstellarHumanVsHuman.php
 	require "InterstellarHumanVsHuman.php";
 	
 	class Tester{
 		public static function main(){
-				/**
-				* isset jika ada variabel true,, GET utk ngambil yang dari form 
-				*/
+				
+				# isset jika ada variabel true,, GET utk ngambil yang dari form 
+				
 				if(isset($_GET['halaman']) && $_GET['halaman']=='main'){
 					session_destroy();
 				}
