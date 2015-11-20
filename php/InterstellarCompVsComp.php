@@ -1,4 +1,11 @@
 <?php
+	
+	# Tugas Besar ADBO (Interstellar) - Space Snake&Ladder
+	# Dosen Pembimbing : Pascal Alfadian
+	
+	# @author Ivan TW - 2014730026 || Riki Rusli (Ketua) - 2014730032 || Daniel Ferdinan - 2014730038
+	# Kelas yang menjadi engine permainan Interstellar dalam mode Komputer melawan Komputer (AI).
+	
 	class InterstellarCompVsComp{
 		private $random;
 		private $numBH;
@@ -10,6 +17,8 @@
 		private $yin=0;
 		private $yout=0;
 		
+		# Konstruktor untuk men-generate board permainan, atribut random
+		# Maksimum jumlah BlackHole (ular) dan warp-gate (tangga)
 		public function __construct(){
 			$this->numBH=rand(2,4);
 			if($this->numBH%2==1){
@@ -22,6 +31,9 @@
 			$this->board=new Board(6,4,4,2);
 		}
 		
+		# Setter posisi X kartesian awal (untuk menentukan posisi masuk blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_X_In($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
@@ -31,6 +43,9 @@
 			$this->xin=$x;
 		}
 		
+		# Setter posisi X kartesian awal (untuk menentukan posisi keluar blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_X_Out($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
@@ -40,6 +55,9 @@
 			$this->xout=$x;
 		}
 		
+		# Setter posisi Y kartesian awal (untuk menentukan posisi masuk blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_Y_In($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
@@ -48,6 +66,10 @@
 			}
 			$this->yout=$x;
 		}
+		
+		# Setter posisi Y kartesian awal (untuk menentukan posisi keluar blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_Y_Out($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
@@ -57,6 +79,7 @@
 			$this->yout=$x;
 		}
 		
+		# Method untuk men-generate blackhole pada board permainan Interstellar
 		public function make_All_BH(){
 			for($i=0;$i<$this->numBH;$i++){
 				$this->set_X_In(1);
@@ -72,6 +95,7 @@
 			}
 		}
 		
+		# Method untuk men-generate warp-gate pada board permainan Interstellar
 		public function make_All_WG(){
 			for($i=0;$i<$this->numWG;$i++){
 				$this->set_X_In(0);
@@ -87,6 +111,7 @@
 			}
 		}
 		
+		# Method untuk men-generate astronot (pemain) pada board permainan Interstellar
 		public function make_All_As(){
 			for($i=0;$i<2;$i++){
 				$i++;
@@ -96,6 +121,10 @@
 			}
 		}
 		
+		# Method untuk menentukan akhir dari permainan (sudah/belum)
+		# @param as masukan objek astronot (pemain)
+		# @param endPoint masukan titik akhir dari permainan
+		# @return status permainan apakah sudah berhenti/belum - boolean
 		public function end_Game($as,$endPoint){
 			if($as->get_Locate_As()==$endPoint){
 				return true;
@@ -105,6 +134,7 @@
 			}
 		}
 		
+		# Method untuk men-generate board permainan Interstellar yang akan ditampilkan pada browser
 		public function print_Board(){
 			for($i=0;$i<10;$i++){
 				for($j=0;$j<10;$j++){
@@ -123,7 +153,6 @@
 					else{
 						echo "[ Φ ] ";
 					}
-					
 				}
 				echo "<br>";
 					for ($k = 0; $k < 10; $k++) {
@@ -143,6 +172,7 @@
 			}
 		}
 		
+		# Method untuk menjalankan permainan Komputer melawan Komputer (AI).
 		public function play(){
 			$this->make_All_As();
 			$this->make_All_BH();
@@ -275,11 +305,8 @@
 					if ($giliran ==2) {
 						$giliran = 0;
 					}
-				}
-				
+				}		
 			}
-			
 		}
-		
 	}
 ?>
