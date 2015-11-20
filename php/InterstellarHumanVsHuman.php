@@ -1,5 +1,12 @@
 <?php
+	# Tugas Besar ADBO (Interstellar) - Space Snake&Ladder
+	# Dosen Pembimbing : Pascal Alfadian
+	
+	# @author Ivan TW - 2014730026 || Riki Rusli (Ketua) - 2014730032 || Daniel Ferdinan - 2014730038
+	# Kelas yang menjadi engine permainan Interstellar dalam mode Manusia melawan Manusia.
+	
 	class InterstellarHumanVsHuman{
+		
 		private $random;
 		private $numBH;
 		private $numWG;
@@ -12,12 +19,10 @@
 		private $yout=0;
 		
 		public function __construct(){
-			
 			if(isset($_SESSION['board'])&&isset($_SESSION['giliran'])){
 				//unserialize;
 				$this->board=unserialize($_SESSION['board']);
 				$this->giliran=$_SESSION['giliran'];
-				
 			}
 			else{
 				$this->numBH=rand(2,4);
@@ -36,6 +41,9 @@
 			}
 		}
 		
+		# Setter posisi X kartesian awal (untuk menentukan posisi masuk blackhole/warp-gate)
+		# @param isGanjil masukan untuk menentukan kotak ganjil/genap yang akan ditempati
+		# 0 untuk kotak ganjil | 1 untuk kotak genap
 		public function set_X_In($isGanjil){
 			$x=rand(2,4)+1;
 			$x+=$isGanjil;
