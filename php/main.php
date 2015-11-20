@@ -1,4 +1,10 @@
 <?php
+	# Tugas Besar ADBO (Interstellar) - Space Snake&Ladder
+	# Dosen Pembimbing : Pascal Alfadian
+	
+	# @author Ivan TW - 2014730026 || Riki Rusli (Ketua) - 2014730032 || Daniel Ferdinan - 2014730038
+	# Kelas Tester yang menjalankan semua kelas menjadi permainan Interstellar
+	
 	session_start();
 	
 	require "Astronot.php";
@@ -21,16 +27,11 @@
 	
 	require "InterstellarHumanVsHuman.php";
 	
-	
-	
-	
 	class Tester{
 		public static function main(){
 				/**
 				* isset jika ada variabel true,, GET utk ngambil yang dari form 
-				
 				*/
-				
 				if(isset($_GET['halaman']) && $_GET['halaman']=='main'){
 					session_destroy();
 				}
@@ -46,9 +47,7 @@
 					$g3=new InterStellarCompVsComp();
 					$g3->play();
 				}
-				
 		}
-		
 	}
 	Tester::main();
 ?>
