@@ -1,4 +1,11 @@
 <?php
+	
+	# Tugas Besar ADBO (Interstellar) - Space Snake&Ladder
+	# Dosen Pembimbing : Pascal Alfadian
+	
+	# @author Ivan TW - 2014730026 || Riki Rusli (Ketua) - 2014730032 || Daniel Ferdinan - 2014730038
+	# Kelas yang merepresentasikan astronot (pemain) pada permainan Interstellar.
+	
 	class Astronot{
 		
 		private $name="";
@@ -7,28 +14,38 @@
 		private $locate;
 		private $isWin=false;
 		
+		# Konstruktor dari kelas Astronot
+		# @param name masukan nama astronot (pemain) - String
 		public function __construct($nameInput) {
                 $this->name=$nameInput;
-        }
+        	}
 		
+		# Getter dari nama astronot
+		# @return nama astronot - String
 		public function get_Name(){
 			return $this->name;
 		}
 		
+		# Getter dari posisi X Astronot
+		# @return posisi sumbu X kartesian astronot - int
 		public function get_X_As(){
 			return $this->x;	
 		}
 		
+		# Getter dari posisi Y Astronot
+		# @return posisi sumbu Y kartesian astronot - int
 		public function get_Y_As(){
 			return $this->y;
 		}
 		
+		# Getter dari posisi astronot (pemain) pada board Interstellar
+		# @return posisi astronot pada board - int
 		public function get_Locate_As(){
 			return $this->locate+1;
 		}
 		
 		public function is_Win_As() {
-        return $this->isWin;
+        		return $this->isWin;
 		}
 
 		public function set_Name($name){
