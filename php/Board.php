@@ -107,6 +107,5 @@
 		public function get_Planet($idxY,$idxX){
 			return $this->arrPl[$idxY][$idxX];
 		}
-		
 	}
 ?>
