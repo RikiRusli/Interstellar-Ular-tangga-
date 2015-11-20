@@ -290,6 +290,10 @@
 				}
 				$this->print_Board();
 				echo "<br>";
+				if($giliran == 1)
+				{
+					echo "---------------------------------------"."<br>";
+				}
 				
 				if ($this->end_Game($this->board->get_As_At($giliran), 100)) {
 					$lanjut = false;
