@@ -105,6 +105,7 @@
 			}
 		}
 		
+		# Method untuk men-generate warp-gate pada board permainan Interstellar
 		public function make_All_WG(){
 			for($i=0;$i<$this->numWG;$i++){
 				$this->set_X_In(0);
@@ -120,6 +121,7 @@
 			}
 		}
 		
+		# Method untuk men-generate astronot (pemain) pada board permainan Interstellar
 		public function make_All_As(){
 			for($i=0;$i<2;$i++){
 				$i++;
@@ -129,6 +131,10 @@
 			}
 		}
 		
+		# Method untuk menentukan akhir dari permainan (sudah/belum)
+		# @param as masukan objek astronot (pemain)
+		# @param endPoint masukan titik akhir dari permainan
+		# @return status permainan apakah sudah berhenti/belum - boolean
 		public function end_Game($as,$endPoint){
 			if($as->get_Locate_As()==$endPoint){
 				return true;
