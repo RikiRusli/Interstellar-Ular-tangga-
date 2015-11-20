@@ -73,7 +73,6 @@
 			if ($this->y % 2 == 0) {
 				//System.out.println("ini");
 				$this->locate = (9 - $this->y) * 10 + (9 - $this->x);
-
 			} else {
 				//System.out.println("itu"+$this->x+" "+$this->y);
 				$this->locate = (9 - $this->y) * 10 + $this->x;
@@ -94,7 +93,6 @@
 					$this->set_X_As($this->x + 1);
 					//this.setLocateAs(locate+1);
 				} else {
-
 					$this->set_Y_As($this->y - 1);
 					//this.setLocateAs(locate+1);
 				}
