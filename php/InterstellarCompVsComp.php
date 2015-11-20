@@ -232,7 +232,7 @@
 						$this->board->get_As_At(0)->set_Y_As(9);
 						$this->board->get_As_At(0)->set_Locate_As();
 						echo "<br>";
-						echo $this->board->get_As_At(1)->get_Name()."mampus keinjek!!!"."<br>";
+						echo $this->board->get_As_At(0)->get_Name()."mampus keinjek!!!"."<br>";
 					}
 				}
 				
