@@ -222,7 +222,8 @@
 						$this->board->get_As_At(1)->set_X_As(0);
 						$this->board->get_As_At(1)->set_Y_As(9);
 						$this->board->get_As_At(1)->set_Locate_As();
-						echo "mampus keinjek!!!"."<br>";
+						echo "<br>";
+						echo $this->board->get_As_At(1)->get_Name()." mampus keinjek!!!"."<br>";
 					}
 				}
 				if ($giliran == 1) {
@@ -230,7 +231,8 @@
 						$this->board->get_As_At(0)->set_X_As(0);
 						$this->board->get_As_At(0)->set_Y_As(9);
 						$this->board->get_As_At(0)->set_Locate_As();
-						echo "mampus keinjek!!!"."<br>";
+						echo "<br>";
+						echo $this->board->get_As_At(1)->get_Name()."mampus keinjek!!!"."<br>";
 					}
 				}
 				
