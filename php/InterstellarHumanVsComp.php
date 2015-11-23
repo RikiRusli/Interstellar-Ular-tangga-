@@ -327,10 +327,12 @@
 					}
 					else{
 						$dadu_Main=$this->board->roll_The_Dice();
+						echo $this->board->get_As_At($this->giliran)->get_Name()." mendapat dadu:".$dadu_Main."<br>"
 					}	
 				}
 				else{
 					$dadu_Main=$this->board->roll_The_Dice();
+					echo $this->board->get_As_At($this->giliran)->get_Name()." mendapat dadu:".$dadu_Main."<br>"
 				}
 				
 				if($this->board->get_As_At($this->giliran)->get_Locate_As()+$dadu_Main>100){
@@ -347,7 +349,7 @@
 				if($dadu_Main==6){
 					echo "Lucky 6!!"."<br>";
 					$dadu_Main=$this->board->roll_The_Dice();
-					echo "mendapat dadu:".$dadu_Main;
+					echo $this->board->get_As_At($this->giliran)->get_Name()." mendapat dadu:".$dadu_Main."<br>"
 					if($this->board->get_As_At($this->giliran)->get_Locate_As()+$dadu_Main>100){
 						$this->board->get_As_At($this->giliran)->move_Backward($dadu_Main);
 						$this->board->get_As_At($this->giliran)->set_Locate_As();
@@ -411,6 +413,7 @@
 				}
 				
 				echo $this->board->get_As_At(0)->get_Name()." pada posisi:".$this->board->get_As_At(0)->get_Locate_As();
+				echo " ___";
 				echo $this->board->get_As_At(1)->get_Name()." pada posisi:".$this->board->get_As_At(1)->get_Locate_As();
 				echo "<br>";
 				$this->print_Board();
