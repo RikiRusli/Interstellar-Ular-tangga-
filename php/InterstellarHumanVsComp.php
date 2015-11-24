@@ -274,21 +274,21 @@
 					echo "<br>";
 					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As());
 					echo " ___ ";
-					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As()+1);
+					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As());
 					echo "<br>";
 				}
 				else if($this->board->get_As_At(1)->get_Locate_As()+1==101){
 					echo "<br>";
-					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As()+1);
+					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As());
 					echo " ___ ";
 					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As());
 					echo "<br>";
 				}
 				else{
 					echo "<br>";
-					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As()+1);
+					echo $this->board->get_As_At(0)->get_Name()." pada posisi:".($this->board->get_As_At(0)->get_Locate_As());
 					echo " ___ ";
-					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As()+1);
+					echo $this->board->get_As_At(1)->get_Name()." pada posisi:".($this->board->get_As_At(1)->get_Locate_As());
 					echo "<br>";
 				}
 				$this->print_Board();
