@@ -42,7 +42,7 @@
 	  # @param x masukan posisi X - int
 	  public function set_Locate_Pl($yInput,$xInput){
 		  if($yInput%2!=0){
-			  $this->locate=(9-$yInput)*10+$xInput;
+			  $this->locate=(9-$yInput)*10+($xInput+1);
 		  }
 		  else{
 			  $this->locate=(9-$yInput)*10+(10-$xInput);
