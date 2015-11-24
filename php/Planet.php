@@ -45,7 +45,7 @@
 			  $this->locate=(9-$yInput)*10+$xInput;
 		  }
 		  else{
-			  $this->locate=(9-$yInput)*10+(9-$xInput);
+			  $this->locate=(9-$yInput)*10+(10-$xInput);
 		  }
 	  }
 	  
