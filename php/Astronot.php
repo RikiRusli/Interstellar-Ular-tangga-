@@ -41,7 +41,7 @@
 		# Getter dari posisi astronot (pemain) pada board Interstellar
 		# @return posisi astronot pada board - int
 		public function get_Locate_As(){
-			return $this->locate+1;
+			return $this->locate;
 		}
 		
 		# Getter dari status astronot (pemain) - Menang/Kalah
@@ -72,10 +72,10 @@
 		public function set_Locate_As(){
 			if ($this->y % 2 == 0) {
 				//System.out.println("ini");
-				$this->locate = (9 - $this->y) * 10 + (9 - $this->x);
+				$this->locate = (9 - $this->y) * 10 + (10 - $this->x);
 			} else {
 				//System.out.println("itu"+$this->x+" "+$this->y);
-				$this->locate = (9 - $this->y) * 10 + $this->x;
+				$this->locate = (9 - $this->y) * 10 + (1 + $this->x);
 			}
 		}
 		
