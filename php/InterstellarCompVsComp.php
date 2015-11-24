@@ -139,10 +139,12 @@
 			for($i=0;$i<10;$i++){
 				for($j=0;$j<10;$j++){
 					if($this->board->get_Planet($i,$j)->get_Warp_Pl()!=null){
-						echo "[ ω ] ";
+						# echo "[ ω ] ";
+						echo "[ ω".$this->board->get_Planet($i,$j)->get_Warp_Pl()->get_Relocate_Position()." ] ";
 					}
 					else if($this->board->get_Planet($i,$j)->get_Hole_Pl()!=null){
-						echo "[ β ] ";
+						# echo "[ β ] ";
+						echo "[ β".$this->board->get_Planet($i,$j)->get_Hole_Pl()->get_Relocate_Position()." ] ";
 					}
 					else if($this->board->get_As_At(0)->get_Locate_As()==$this->board->get_Planet($i,$j)->get_Locate_Pl()){
 						echo "[ X ] ";
