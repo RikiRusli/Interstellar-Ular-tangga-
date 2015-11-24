@@ -93,5 +93,18 @@
 			$asInput->setXAs($this->getXOutLc());
 			$asInput->setYAs($this->getYOutLc());
 		}
+		
+		# Method untuk mendapatkan lokasi out dari locator 
+		public function get_Relocate_Position(){
+			if ($this->y % 2 == 0) {
+				//System.out.println("ini");
+				return (9 - $this->yOut) * 10 + (10 - $this->xOut);
+			} else {
+				//System.out.println("itu"+$this->x+" "+$this->y);
+				return (9 - $this->yOut) * 10 + (1 + $this->xOut);
+			}
+			
+		}
+		
 	}
 ?>
