@@ -151,7 +151,8 @@
 						echo "[ Y ] ";
 					}
 					else{
-						echo "[ Φ ] ";
+						#echo "[ Φ ] ";
+						echo "[ ... ] ";
 					}
 				}
 				echo "<br>";
